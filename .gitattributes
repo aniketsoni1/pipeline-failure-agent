@@ -1,2 +1,24 @@
-# Auto detect text files and perform LF normalization
-* text=auto
+# Normalize line endings — LF in the repo, checkout as-is per platform.
+* text=auto eol=lf
+
+# Windows-specific scripts keep CRLF.
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+# Binary assets — never diffed or line-ending converted.
+*.png binary
+*.jpg binary
+*.gif binary
+*.svg text
+*.vsix binary
+*.pdf binary
+
+# Keep the lockfile from cluttering diffs / PR reviews.
+package-lock.json linguist-generated=true -diff
+
+# Recorded fixtures are data, not "code" for language stats.
+packages/**/fixtures.ts linguist-detectable=false
+samples/** linguist-documentation
+
+# GitHub language stats: don't count docs/samples as the primary language.
+docs/** linguist-documentation

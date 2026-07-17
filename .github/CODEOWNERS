@@ -1,0 +1,10 @@
+# Default owners for everything in the repo.
+# Replace @your-org/maintainers with real GitHub handles or teams.
+*                                   @your-org/maintainers
+
+# Area owners
+/packages/security/                 @your-org/security
+/packages/rule-engine/              @your-org/detection
+/packages/connector-*/              @your-org/connectors
+/apps/vscode-extension/             @your-org/extension
+/.github/workflows/                 @your-org/release
