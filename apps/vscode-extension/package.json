@@ -1,0 +1,88 @@
+{
+  "name": "pipeline-failure-agent-vscode",
+  "displayName": "Pipeline Failure Agent",
+  "description": "Investigate failed data pipelines, jobs, queries and workflows — deterministic-first, with optional AI.",
+  "version": "0.1.0",
+  "publisher": "your-org",
+  "license": "Apache-2.0",
+  "engines": { "vscode": "^1.85.0" },
+  "categories": ["Other", "Data Science", "Testing"],
+  "activationEvents": [],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "pipelineFailureAgent",
+          "title": "Pipeline Failure Agent",
+          "icon": "media/icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "pipelineFailureAgent": [
+        { "id": "pfaConnections", "name": "Connections" },
+        { "id": "pfaFailures", "name": "Recent Failures" }
+      ]
+    },
+    "commands": [
+      { "command": "pfa.refresh", "title": "Pipeline Agent: Refresh", "icon": "$(refresh)" },
+      { "command": "pfa.investigateActiveFile", "title": "Pipeline Agent: Investigate Active Log File" },
+      { "command": "pfa.investigateRun", "title": "Pipeline Agent: Investigate Run…" },
+      { "command": "pfa.exportReport", "title": "Pipeline Agent: Export Incident Report" },
+      { "command": "pfa.createJiraIssue", "title": "Pipeline Agent: Create Jira Issue from Report" }
+    ],
+    "menus": {
+      "view/title": [
+        { "command": "pfa.refresh", "when": "view == pfaConnections", "group": "navigation" }
+      ],
+      "view/item/context": [
+        { "command": "pfa.investigateRun", "when": "viewItem == pfaRun", "group": "inline" }
+      ],
+      "explorer/context": [
+        {
+          "command": "pfa.investigateActiveFile",
+          "when": "resourceExtname == .log",
+          "group": "navigation"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Pipeline Failure Agent",
+      "properties": {
+        "pfa.redaction": {
+          "type": "string",
+          "enum": ["strict", "standard", "none"],
+          "default": "strict",
+          "description": "Secret/PII redaction level applied before analysis."
+        },
+        "pfa.correlate": {
+          "type": "boolean",
+          "default": true,
+          "description": "Correlate change events and historical incidents across connectors."
+        },
+        "pfa.ai.enabled": {
+          "type": "boolean",
+          "default": false,
+          "description": "Enable optional AI-assisted explanation (off by default; local analysis always runs)."
+        },
+        "pfa.ai.provider": {
+          "type": "string",
+          "default": "",
+          "description": "AI provider id (only used when pfa.ai.enabled is true)."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "build": "node esbuild.mjs",
+    "watch": "node esbuild.mjs --watch",
+    "package": "vsce package --no-dependencies"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.85.0",
+    "@types/node": "^20.14.0",
+    "esbuild": "^0.24.0",
+    "typescript": "^5.6.3"
+  }
+}
