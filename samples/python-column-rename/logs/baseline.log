@@ -1,0 +1,5 @@
+2026-07-14 08:00:00,101 INFO  pipeline.silver Starting silver_transformation for Customer Revenue Pipeline
+2026-07-14 08:00:00,140 INFO  pipeline.silver Connecting to source
+2026-07-14 08:00:00,220 INFO  pipeline.silver Loaded 12,400 rows from raw.customers
+2026-07-14 08:00:00,262 INFO  pipeline.silver silver_transformation completed
+2026-07-14 08:00:00,263 INFO  pipeline.runner Job run succeeded

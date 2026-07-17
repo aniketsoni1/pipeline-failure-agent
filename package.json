@@ -16,7 +16,7 @@
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "test": "vitest run",
     "test:watch": "vitest",
-    "lint": "eslint . --ext .ts",
+    "lint": "eslint .",
     "format": "prettier --write .",
     "cli": "tsx apps/cli/src/index.ts",
     "demo": "tsx apps/cli/src/index.ts investigate samples/python-column-rename/logs/run.log --format markdown"
@@ -27,9 +27,12 @@
     "zod": "^4.4.3"
   },
   "devDependencies": {
+    "@eslint/js": "^9.13.0",
     "@types/node": "^20.14.0",
+    "eslint": "^9.13.0",
     "tsx": "^4.19.2",
     "typescript": "^5.6.3",
+    "typescript-eslint": "^8.11.0",
     "vitest": "^2.1.8"
   }
 }

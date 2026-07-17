@@ -1,0 +1,6 @@
+2026-07-16 14:03:01 INFO  ci Installing dependencies in CI runner
+2026-07-16 14:03:09 INFO  ci Resolving dependency tree
+2026-07-16 14:03:10 ERROR ci npm ERR! code ERESOLVE
+2026-07-16 14:03:10 ERROR ci npm ERR! ERESOLVE could not resolve
+2026-07-16 14:03:10 ERROR ci npm ERR! Could not find a version that satisfies pandas@^3 (installed locally: 2.2.1)
+2026-07-16 14:03:11 ERROR ci Command failed with exit code 1

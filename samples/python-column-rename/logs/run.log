@@ -1,0 +1,12 @@
+2026-07-15 08:00:00,101 INFO  pipeline.silver Starting silver_transformation for Customer Revenue Pipeline
+2026-07-15 08:00:00,140 INFO  pipeline.silver Connecting to source with dsn=postgres://etl:S3cr3tP@ss@warehouse.internal:5432/raw
+2026-07-15 08:00:00,220 INFO  pipeline.silver Loaded 12,401 rows from raw.customers
+2026-07-15 08:00:00,240 WARNING pipeline.silver Column set differs from cached schema snapshot
+Traceback (most recent call last):
+  File "/app/etl/silver.py", line 42, in transform
+    df["customer_region"] = df["customer_region"].str.upper()
+  File "/usr/lib/python3.11/site-packages/pandas/core/frame.py", line 3805, in __getitem__
+    indexer = self.columns.get_loc(key)
+KeyError: 'customer_region'
+2026-07-15 08:00:00,262 ERROR pipeline.silver silver_transformation failed
+2026-07-15 08:00:00,263 ERROR pipeline.runner Job run failed

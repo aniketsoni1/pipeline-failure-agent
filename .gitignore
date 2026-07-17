@@ -6,6 +6,8 @@ coverage/
 .DS_Store
 vitest.config.ts.timestamp-*.mjs
 *.log
+# ...but keep sample pipeline logs (they are demo fixtures, not runtime logs).
+!samples/**/*.log
 .pfa/
 .env
 .env.*

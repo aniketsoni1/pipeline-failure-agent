@@ -6,12 +6,33 @@ on:
 
 permissions:
   contents: write
-  id-token: write
 
 jobs:
-  cli:
-    name: Build + publish CLI
+  # Always succeeds: cut the GitHub Release from the tag.
+  github-release:
+    name: Create GitHub release
     runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 20, cache: npm }
+      - run: npm ci
+      - run: npm test
+      - uses: softprops/action-gh-release@v2
+        with:
+          generate_release_notes: true
+
+  # Publishes to npm ONLY if an NPM_TOKEN secret is configured — otherwise skips
+  # (so the release does not fail before the CLI is packaged for distribution).
+  npm-publish:
+    name: Publish to npm (optional)
+    runs-on: ubuntu-latest
+    needs: github-release
+    permissions:
+      contents: read
+      id-token: write
+    env:
+      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -20,21 +41,20 @@ jobs:
           cache: npm
           registry-url: 'https://registry.npmjs.org'
       - run: npm ci
-      - run: npm test
-      - name: Build CLI bundle
-        run: npm run build:cli --if-present
-      - name: Publish to npm
+      - name: Publish
+        if: ${{ env.NPM_TOKEN != '' }}
         run: npm publish --provenance --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-      - name: Create GitHub release
-        uses: softprops/action-gh-release@v2
-        with:
-          generate_release_notes: true
+      - name: Skip (no token)
+        if: ${{ env.NPM_TOKEN == '' }}
+        run: echo "NPM_TOKEN secret not set — skipping npm publish."
 
+  # Builds + pushes a container image to GHCR using the built-in GITHUB_TOKEN.
   container:
     name: Build + push container
     runs-on: ubuntu-latest
+    needs: github-release
     permissions:
       contents: read
       packages: write
