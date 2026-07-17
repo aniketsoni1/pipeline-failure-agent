@@ -1,0 +1,12 @@
+node_modules/
+dist/
+out/
+*.vsix
+coverage/
+.DS_Store
+vitest.config.ts.timestamp-*.mjs
+*.log
+.pfa/
+.env
+.env.*
+!.env.example
