@@ -1,0 +1,25 @@
+{
+  "metadata": {
+    "invocation_id": "dbt-inv-77",
+    "generated_at": "2026-07-15T09:12:00Z"
+  },
+  "results": [
+    {
+      "status": "success",
+      "unique_id": "model.shop.stg_customers",
+      "message": null
+    },
+    {
+      "status": "error",
+      "unique_id": "model.shop.fct_orders",
+      "message": "Database Error: cannot be cast to type numeric: \"N/A\" — column order_total",
+      "failures": null
+    },
+    {
+      "status": "fail",
+      "unique_id": "test.shop.not_null_fct_orders_order_total",
+      "message": "Got 14 results, configured to fail if != 0",
+      "failures": 14
+    }
+  ]
+}

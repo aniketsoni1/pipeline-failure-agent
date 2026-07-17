@@ -1,0 +1,16 @@
+{
+  "nodes": {
+    "model.shop.stg_customers": {
+      "original_file_path": "models/staging/stg_customers.sql",
+      "resource_type": "model"
+    },
+    "model.shop.fct_orders": {
+      "original_file_path": "models/marts/fct_orders.sql",
+      "resource_type": "model"
+    },
+    "test.shop.not_null_fct_orders_order_total": {
+      "original_file_path": "models/marts/schema.yml",
+      "resource_type": "test"
+    }
+  }
+}

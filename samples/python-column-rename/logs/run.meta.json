@@ -1,0 +1,8 @@
+{
+  "platform": "local",
+  "pipeline": "Customer Revenue Pipeline",
+  "failedStage": "silver_transformation",
+  "dependencies": { "pandas": "2.2.1", "duckdb": "1.1.0" },
+  "environment": { "python": "3.11.9" },
+  "baseline": "baseline.log"
+}
