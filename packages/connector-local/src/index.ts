@@ -24,9 +24,9 @@ const metaSchema = z
     platform: z.string().optional(),
     pipeline: z.string().optional(),
     failedStage: z.string().optional(),
-    parameters: z.record(z.string()).optional(),
-    dependencies: z.record(z.string()).optional(),
-    environment: z.record(z.string()).optional(),
+    parameters: z.record(z.string(), z.string()).optional(),
+    dependencies: z.record(z.string(), z.string()).optional(),
+    environment: z.record(z.string(), z.string()).optional(),
     baseline: z.string().optional(),
   })
   .partial();

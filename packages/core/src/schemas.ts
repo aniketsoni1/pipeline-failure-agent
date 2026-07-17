@@ -29,7 +29,7 @@ export const sourceRefSchema = z.object({
   platform: z.string(),
   nativeId: z.string(),
   url: z.string().url().optional(),
-  locator: z.record(z.string()).optional(),
+  locator: z.record(z.string(), z.string()).optional(),
 });
 
 export const evidenceSchema = z.object({
@@ -73,7 +73,7 @@ export const connectionConfigSchema = z.object({
   credentialProvider: z.string().default('env'),
   mode: z.enum(['read-only', 'read-write']).default('read-only'),
   /** Non-secret settings (hosts, workspace ids, project keys). */
-  settings: z.record(z.string()).default({}),
+  settings: z.record(z.string(), z.string()).default({}),
 });
 
 export const aiConfigSchema = z.object({
@@ -96,8 +96,10 @@ export const securityConfigSchema = z.object({
 export const configSchema = z.object({
   version: z.literal(1).default(1),
   connections: z.array(connectionConfigSchema).default([]),
-  ai: aiConfigSchema.default({}),
-  security: securityConfigSchema.default({}),
+  // Functional defaults run the child schema so its own field defaults apply.
+  // Written this way to be valid under both zod 3 and zod 4.
+  ai: aiConfigSchema.default(() => aiConfigSchema.parse({})),
+  security: securityConfigSchema.default(() => securityConfigSchema.parse({})),
 });
 
 export type ConnectionConfig = z.infer<typeof connectionConfigSchema>;
