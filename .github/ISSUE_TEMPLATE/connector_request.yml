@@ -1,0 +1,16 @@
+name: Connector request
+description: Request a new platform connector
+labels: [connector]
+body:
+  - type: input
+    id: platform
+    attributes: { label: Platform (e.g. Airflow, ADF, Fivetran) }
+    validations: { required: true }
+  - type: textarea
+    id: signals
+    attributes:
+      label: What failure signals should it read?
+      description: Runs/tasks, logs, metadata, change events, etc.
+  - type: textarea
+    id: auth
+    attributes: { label: Authentication mechanism }
