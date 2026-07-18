@@ -18,7 +18,7 @@ export async function loadConfig(path = DEFAULT_CONFIG_PATH): Promise<PfaConfig>
     return configSchema.parse(parsed);
   } catch (e) {
     if ((e as NodeJS.ErrnoException).code === 'ENOENT') return defaultConfig();
-    throw new Error(`Invalid config at ${path}: ${(e as Error).message}`);
+    throw new Error(`Invalid config at ${path}: ${(e as Error).message}`, { cause: e });
   }
 }
 
