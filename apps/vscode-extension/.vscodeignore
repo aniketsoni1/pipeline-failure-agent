@@ -3,4 +3,5 @@ src/**
 esbuild.mjs
 tsconfig.json
 **/*.map
+media/icon-source.svg
 ../../node_modules/**
