@@ -13,6 +13,11 @@ updates:
       # until typescript-eslint ships TS7 support, then bump deliberately.
       - dependency-name: typescript
         update-types: [version-update:semver-major]
+      # vitest 4 bundles rolldown, which imports `styleText` from node:util
+      # (Node 20.12+) and breaks the Node 18 CI leg. Hold the major while the
+      # matrix still supports Node 18 (see package.json engines >=18.18).
+      - dependency-name: vitest
+        update-types: [version-update:semver-major]
   - package-ecosystem: npm
     directory: '/apps/vscode-extension'
     schedule: { interval: weekly }
