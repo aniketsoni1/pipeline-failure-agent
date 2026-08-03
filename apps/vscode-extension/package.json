@@ -2,7 +2,7 @@
   "name": "pipeline-failure-agent-vscode",
   "displayName": "Pipeline Failure Agent",
   "description": "Investigate failed data pipelines, jobs, queries and workflows — deterministic-first, with optional AI.",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "publisher": "AniketSoni",
   "license": "Apache-2.0",
   "icon": "media/icon.png",

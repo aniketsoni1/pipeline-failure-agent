@@ -2,6 +2,20 @@
 
 All notable changes to the **Pipeline Failure Agent** extension are documented here.
 
+## [0.1.2]
+
+Metadata-only patch release. No functional changes to the investigation engine,
+connectors or reporting — the extension code is unchanged from 0.1.1.
+
+- The **Homepage** link in the Marketplace Resources panel now points at
+  <https://aniketsoni.com/extensions/pipeline-failure-agent/>, a dedicated
+  documentation page for this extension.
+- Added a **Q & A** link pointing at <https://aniketsoni.com/extensions/support/>,
+  which collects the issue tracker, reporting guidance and the security
+  disclosure process in one place.
+- Added a **Sponsor** link, for parity with the other extensions published under
+  this publisher.
+
 ## [0.1.1]
 
 - New Marketplace listing: custom icon, richer overview, feature list, Getting Started guide, and command/settings reference.
