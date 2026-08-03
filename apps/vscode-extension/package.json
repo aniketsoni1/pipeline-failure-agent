@@ -11,6 +11,7 @@
   "homepage": "https://aniketsoni.com/extensions/pipeline-failure-agent/",
   "qna": "https://aniketsoni.com/extensions/support/",
   "bugs": { "url": "https://github.com/aniketsoni1/pipeline-failure-agent/issues" },
+  "sponsor": { "url": "https://github.com/sponsors/aniketsoni1" },
   "engines": { "vscode": "^1.85.0" },
   "categories": ["Data Science", "Testing", "Debuggers"],
   "keywords": [
